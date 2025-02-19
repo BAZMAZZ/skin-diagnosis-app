@@ -9,11 +9,15 @@ app = FastAPI()
 # Allow CORS for the frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # Allows requests from your React frontend
+    allow_origins=[
+        "http://localhost:3000",  # Local frontend
+        "https://skin-diagnosis-frontend.vercel.app"  # Deployed frontend
+    ],
     allow_credentials=True,
-    allow_methods=["*"],  # Allows all HTTP methods (GET, POST, etc.)
-    allow_headers=["*"],  # Allows all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
+
 
 # Include your routes
 app.include_router(diagnosis.router, prefix="/api")
